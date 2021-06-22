@@ -15,7 +15,7 @@ def _cfg(url='', **kwargs):
     }
 
 default_cfgs = {
-    'ViP': _cfg(crop_pct=0.875),
+    'ViP_S': _cfg(crop_pct=0.875),
     'ViP_M': _cfg(crop_pct=0.9),
     'ViP_L': _cfg(crop_pct=0.9),
 }
@@ -222,7 +222,7 @@ def vip_s14(pretrained=False, **kwargs):
     embed_dims = [384, 384, 384, 384]
     model = ShuffleMLP(layers, embed_dims=embed_dims, patch_size=14, transitions=transitions,
         num_heads=num_heads, mlp_ratios=mlp_ratios, shuffle_mlp_fn=WeightedSpatialMLP, **kwargs)
-    model.default_cfg = default_cfgs['ViP']
+    model.default_cfg = default_cfgs['ViP_S']
     return model
 
 @register_model
@@ -234,7 +234,7 @@ def vip_s7(pretrained=False, **kwargs):
     embed_dims = [192, 384, 384, 384]
     model = ShuffleMLP(layers, embed_dims=embed_dims, patch_size=7, transitions=transitions,
         num_heads=num_heads, mlp_ratios=mlp_ratios, shuffle_mlp_fn=WeightedSpatialMLP, **kwargs)
-    model.default_cfg = default_cfgs['ViP']
+    model.default_cfg = default_cfgs['ViP_S']
     return model
 
 @register_model
