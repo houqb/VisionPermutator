@@ -1,34 +1,40 @@
 # Vision Permutator: A Permutable MLP-Like Architecture for Visual Recognition
 
-This is a Pytorch implementation of our paper. 
+This is a Pytorch implementation of our paper. We present Vision Permutator, a conceptually simple and data efficient
+MLP-like architecture for visual recognition. We show that our Vision Permutators are formidable competitors to convolutional neural
+networks (CNNs) and vision transformers. 
 
-![Compare](figures/Compare.png)
+Vision Permutator achieves 81.6% top-1 accuracy on ImageNet without
+extra large-scale training data (e.g., ImageNet-22k) using only 25M learnable parameters.
+When scaled up to 88M, we attain 83.2% top-1 accuracy.
 
-Comparison between the proposed LV-ViT and other recent works based on transformers. Note that we only show models whose model sizes are under 100M.
+We hope this work could encourage researchers to rethink the way of encoding spatial
+information and facilitate the development of MLP-like models.
 
-Our codes are based on the [pytorch-image-models](https://github.com/rwightman/pytorch-image-models) by [Ross Wightman](https://github.com/rwightman).
+![Compare](permute_mlp.png)
 
-### Update
+Basic structure of the proposed Permute-MLP layer. The proposed Permute-MLP layer contains
+three branches that are responsible for encoding features along the height, width, and channel
+dimensions, respectively. The outputs from the three branches are then combined using element-wise addition, followed by a fully-connected layer for feature fusion.
 
-**2021.6: Support `pip install tlt` to use our Token Labeling Toolbox for image models.**
+Our codes are based on the [pytorch-image-models](https://github.com/rwightman/pytorch-image-models) and [Token Labeling](https://github.com/zihangJiang/TokenLabelinghttps://github.com/rwightman).
 
-**2021.6: Release training code and segmentation model.**
+### Comparison with Recent MLP-like Models
 
-**2021.4: Release LV-ViT models.**
+| Model                | Parameters | Throughput | Image resolution | Top 1 Acc. | Download |
+| :------------------- | :--------- | :--------- | :--------------- | :--------- | :------- |
+| EAMLP-14             | 30M        | 711 img/s  |       224        |  78.9%     |          |
+| gMLP-S               | 20M        | -          |       224        |  79.6%     |          |
+| ResMLP-S24           | 30M        | 715 img/s  |       224        |  79.4%     |          |
+| ViP-Small/7 (ours)   | 25M        | 719 img/s  |       224        |  81.6%     | [link]() |
+| EAMLP-19             | 55M        | 464 img/s  |       224        |  79.4%     |          |
+| Mixer-B/16           | 59M        | -          |       224        |  78.5%     |          |
+| ViP-Medium/7 (ours)  | 55M        | 418 img/s  |       224        |  82.7%     | [link]() |
+| gMLP-B               | 73M        | -          |       224        |  81.6%     |          |
+| ResMLP-B24           | 116M       | 231 img/s  |       224        |  81.0%     |          |
+| ViP-Large/7          | 88M        | 298 img/s  |       224        |  83.2%     | [link]() |
 
-#### LV-ViT Models
-
-| Model                           | layer | dim  | Image resolution |  Param  | Top 1 |Download |
-| :------------------------------ | :---- | :--- | :--------------: |-------: | ----: |   ----: |
-| LV-ViT-S                        | 16    | 384  |       224        |  26.15M |  83.3 |[link](https://github.com/zihangJiang/TokenLabeling/releases/download/1.0/lvvit_s-26M-224-83.3.pth.tar) |
-| LV-ViT-S                        | 16    | 384  |       384        |  26.30M |  84.4 |[link](https://github.com/zihangJiang/TokenLabeling/releases/download/1.0/lvvit_s-26M-384-84.4.pth.tar) |
-| LV-ViT-M                        | 20    | 512  |       224        |  55.83M |  84.0 |[link](https://github.com/zihangJiang/TokenLabeling/releases/download/1.0/lvvit_m-56M-224-84.0.pth.tar) |
-| LV-ViT-M                        | 20    | 512  |       384        |  56.03M |  85.4 |[link](https://github.com/zihangJiang/TokenLabeling/releases/download/1.0/lvvit_m-56M-384-85.4.pth.tar) |
-| LV-ViT-M                        | 20    | 512  |       448        |  56.13M |  85.5 |[link](https://github.com/zihangJiang/TokenLabeling/releases/download/1.1/lvvit_m-56M-448-85.5.pth.tar) |
-| LV-ViT-L                        | 24    | 768  |       448        | 150.47M |  86.2 |[link](https://github.com/zihangJiang/TokenLabeling/releases/download/1.0/lvvit_l-150M-448-86.2.pth.tar) |
-| LV-ViT-L                        | 24    | 768  |       512        | 150.66M |  86.4 |[link](https://github.com/zihangJiang/TokenLabeling/releases/download/1.0/lvvit_l-150M-512-86.4.pth.tar) |
-
-#### Requirements
+### Requirements
 
 torch>=1.4.0
 torchvision>=0.5.0
@@ -54,20 +60,15 @@ data prepare: ImageNet with the following folder structure, you can extract imag
 │  ├── ......
 ```
 
-#### Validation
+### Validation
 Replace DATA_DIR with your imagenet validation set path and MODEL_DIR with the checkpoint path
 ```
 CUDA_VISIBLE_DEVICES=0 bash eval.sh /path/to/imagenet/val /path/to/checkpoint
 ```
 
-#### Label data
+### Training
 
-We provide NFNet-F6 generated dense label map [here](https://drive.google.com/file/d/1Cat8HQPSRVJFPnBLlfzVE0Exe65a_4zh/view?usp=sharing). As NFNet-F6 are based on pure ImageNet data, no extra training data is involved.
-
-
-#### Training
-
-Train the LV-ViT-S: 
+Train the : 
 
 If only 4 GPUs are available,
 
@@ -92,45 +93,6 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 ./distributed_train.sh 8 /path/to/imagenet 
 ```
 If you want to train our LV-ViT on images with 384x384 resolution, please use `--img-size 384 --token-label-size 24`.
 
-#### Fine-tuning
-
-To Fine-tune the pre-trained LV-ViT-S on images with 384x384 resolution:
-```
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 ./distributed_train.sh 8 /path/to/imagenet --model lvvit_s -b 64 --apex-amp --img-size 384 --drop-path 0.1 --token-label --token-label-data /path/to/label_data --token-label-size 24 --lr 5.e-6 --min-lr 5.e-6 --weight-decay 1.e-8 --finetune /path/to/checkpoint
-```
-
-To Fine-tune the pre-trained LV-ViT-S on other datasets without token labeling:
-```
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 ./distributed_train.sh 8 /path/to/dataset --model lvvit_s -b 64 --apex-amp --img-size 224 --drop-path 0.1 --token-label --token-label-size 14 --dense-weight 0.0 --num-classes $NUM_CLASSES --finetune /path/to/checkpoint
-```
-
-### Segmentation
-
-Our Segmentation model are fully based upon the [MMSegmentation](https://github.com/open-mmlab/mmsegmentation) Toolkit. The model and config files are under `seg/` folder which follow the same folder structure. You can simply drop in these file to get start.
-
-```shell
-git clone https://github.com/open-mmlab/mmsegmentation # and install
-
-cp seg/mmseg/models/backbones/vit.py mmsegmentation/mmseg/models/backbones/
-cp -r seg/configs/lvvit mmsegmentation/configs/
-
-# test upernet+lvvit_s (add --aug-test to test on multi scale)
-cd mmsegmentation
-./tools/dist_test.sh configs/lvvit/upernet_lvvit_s_512x512_160k_ade20k.py /path/to/checkpoint 8 --eval mIoU [--aug-test]
-```
-
-| Backbone                        | Method  | Crop size | Lr Schd |  mIoU   |  mIoU(ms) | Pixel Acc.| Param |Download |
-| :------------------------------ | :------ | :-------- | :------ |:------- |:--------- | :-------- | :---- | :------ |
-| LV-ViT-S                        | UperNet |  512x512  |   160k  |  47.9   |    48.6   |   83.1    |  44M  |[link](https://github.com/zihangJiang/TokenLabeling/releases/download/v1.1-seg/upernet_lvvit_s.pth) |
-| LV-ViT-M                        | UperNet |  512x512  |   160k  |  49.4   |    50.6   |   83.5    |  77M  |[link](https://github.com/zihangJiang/TokenLabeling/releases/download/v1.1-seg/upernet_lvvit_m.pth) |
-| LV-ViT-L                        | UperNet |  512x512  |   160k  |  50.9   |    51.8   |   84.1    |  209M |[link](https://github.com/zihangJiang/TokenLabeling/releases/download/v1.1-seg/upernet_lvvit_l.pth) |
-
-
-### Visualization
-
-We apply the visualization method in this [repo](https://github.com/hila-chefer/Transformer-Explainability) to visualize the parts of the image that led to a certain classification for DeiT-Base and our LV-ViT-S. The parts of the image that used by the network to make the decision are highlighted in red.
-
-![Compare](figures/Top1.jpg)
 
 #### Reference
 If you use this repo or find it useful, please consider citing:
@@ -142,6 +104,3 @@ If you use this repo or find it useful, please consider citing:
   year={2021}
 }
 ```
-
-#### Related projects
-[T2T-ViT](https://github.com/yitu-opensource/T2T-ViT/), [Re-labeling ImageNet](https://github.com/naver-ai/relabel_imagenet), [MMSegmentation](https://github.com/open-mmlab/mmsegmentation), [Transformer Explainability](https://github.com/hila-chefer/Transformer-Explainability).
