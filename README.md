@@ -34,6 +34,8 @@ Our codes are based on the [pytorch-image-models](https://github.com/rwightman/p
 | ResMLP-B24           | 116M       | 231 img/s  |       224        |  81.0%     |          |
 | ViP-Large/7          | 88M        | 298 img/s  |       224        |  83.2%     | [link]() |
 
+The throughput is measured on a single machine with V100 GPU (32GB) with batch size set to 32.
+
 ### Requirements
 
 torch>=1.4.0
