@@ -22,13 +22,13 @@ Our codes are based on the [pytorch-image-models](https://github.com/rwightman/p
 | EAMLP-14             | 30M        | 711 img/s  |       224        |  78.9%     |          |
 | gMLP-S               | 20M        | -          |       224        |  79.6%     |          |
 | ResMLP-S24           | 30M        | 715 img/s  |       224        |  79.4%     |          |
-| ViP-Small/7 (ours)   | 25M        | 719 img/s  |       224        |  81.6%     | [link]() |
+| ViP-Small/7 (ours)   | 25M        | 719 img/s  |       224        |  81.5%     | [link](https://drive.google.com/file/d/1cX6eauDrsGsLSZnqsX7cl0oiKX8Dzv5z/view?usp=sharing) |
 | EAMLP-19             | 55M        | 464 img/s  |       224        |  79.4%     |          |
 | Mixer-B/16           | 59M        | -          |       224        |  78.5%     |          |
-| ViP-Medium/7 (ours)  | 55M        | 418 img/s  |       224        |  82.7%     | [link]() |
+| ViP-Medium/7 (ours)  | 55M        | 418 img/s  |       224        |  82.7%     | [link](https://drive.google.com/file/d/15y5WMypthpbBFdc01E3mJCZit7q0Yn8m/view?usp=sharing) |
 | gMLP-B               | 73M        | -          |       224        |  81.6%     |          |
 | ResMLP-B24           | 116M       | 231 img/s  |       224        |  81.0%     |          |
-| ViP-Large/7          | 88M        | 298 img/s  |       224        |  83.2%     | [link]() |
+| ViP-Large/7          | 88M        | 298 img/s  |       224        |  83.2%     | [link](https://drive.google.com/file/d/14F5IXGXmB_3jrwK33Efae-WEb5D_G85c/view?usp=sharing) |
 
 The throughput is measured on a single machine with V100 GPU (32GB) with batch size set to 32.
 
@@ -37,7 +37,6 @@ The throughput is measured on a single machine with V100 GPU (32GB) with batch s
 torch>=1.4.0
 torchvision>=0.5.0
 pyyaml
-scipy
 timm==0.4.5
 
 data prepare: ImageNet with the following folder structure, you can extract imagenet by this [script](https://gist.github.com/BIGBALLON/8a71d225eff18d88e469e6ea9b39cef4).
@@ -68,5 +67,5 @@ CUDA_VISIBLE_DEVICES=0 bash eval.sh /path/to/imagenet/val /path/to/checkpoint
 
 If 8 GPUs are available: 
 ```
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 ./distributed_train.sh 8 /path/to/imagenet --model vip_s7 -b 256 -j 8 --opt adamw --epochs 300 --sched cosine --apex-amp --img-size 224 --drop-path 0.1 --lr 2e-3 --weight-decay 0.05 --remode pixel --reprob 0.25 --aa rand-m9-mstd0.5-inc1 --smoothing 0.1 --mixup 0.8 --cutmix 1.0 --warmup-lr 1e-6
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 ./distributed_train.sh 8 /path/to/imagenet --model vip_s7 -b 256 -j 8 --opt adamw --epochs 300 --sched cosine --apex-amp --img-size 224 --drop-path 0.1 --lr 2e-3 --weight-decay 0.05 --remode pixel --reprob 0.25 --aa rand-m9-mstd0.5-inc1 --smoothing 0.1 --mixup 0.8 --cutmix 1.0 --warmup-lr 1e-6 --warmup-epochs 5
 ```
