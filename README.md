@@ -94,15 +94,3 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 ./distributed_train.sh 8 /path/to/imagenet 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 ./distributed_train.sh 8 /path/to/imagenet --model lvvit_l -b 128 --lr 1.e-3 --aa rand-n3-m9-mstd0.5-inc1 --apex-amp --img-size 224 --drop-path 0.3 --token-label --token-label-data /path/to/label_data --token-label-size 14 --model-ema
 ```
 If you want to train our LV-ViT on images with 384x384 resolution, please use `--img-size 384 --token-label-size 24`.
-
-
-#### Reference
-If you use this repo or find it useful, please consider citing:
-```
-@article{jiang2021all,
-  title={All Tokens Matter: Token Labeling for Training Better Vision Transformers},
-  author={Jiang, Zihang and Hou, Qibin and Yuan, Li and Zhou, Daquan and Shi, Yujun and Jin, Xiaojie and Wang, Anran and Feng, Jiashi},
-  journal={arXiv preprint arXiv:2104.10858},
-  year={2021}
-}
-```
