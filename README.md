@@ -22,7 +22,7 @@ Our codes are based on the [pytorch-image-models](https://github.com/rwightman/p
 | EAMLP-14             | 30M        | 711 img/s  |       224        |  78.9%     |          |
 | gMLP-S               | 20M        | -          |       224        |  79.6%     |          |
 | ResMLP-S24           | 30M        | 715 img/s  |       224        |  79.4%     |          |
-| ViP-Small/7 (ours)   | 25M        | 719 img/s  |       224        |  81.6%     | [link]() |
+| ViP-Small/7 (ours)   | 25M        | 719 img/s  |       224        |  81.5%     | [link]() |
 | EAMLP-19             | 55M        | 464 img/s  |       224        |  79.4%     |          |
 | Mixer-B/16           | 59M        | -          |       224        |  78.5%     |          |
 | ViP-Medium/7 (ours)  | 55M        | 418 img/s  |       224        |  82.7%     | [link]() |
