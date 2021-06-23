@@ -19,7 +19,7 @@ import torch.nn as nn
 import torchvision.utils
 from torch.nn.parallel import DistributedDataParallel as NativeDDP
 
-from timm.data import Dataset, create_loader, resolve_data_config, Mixup, FastCollateMixup, AugMixDataset
+from timm.data import create_dataset, create_loader, resolve_data_config, Mixup, FastCollateMixup, AugMixDataset
 from timm.models import load_checkpoint, create_model, resume_checkpoint, convert_splitbn_model
 from timm.utils import *
 from timm.loss import LabelSmoothingCrossEntropy, SoftTargetCrossEntropy, JsdCrossEntropy
@@ -41,6 +41,12 @@ parser = argparse.ArgumentParser(description='ViP Training and Evaluating')
 # Dataset / Model parameters
 parser.add_argument('data', metavar='DIR',
                     help='path to dataset')
+parser.add_argument('--dataset', '-d', metavar='NAME', default='',
+                    help='dataset type (default: ImageFolder/ImageTar if empty)')
+parser.add_argument('--train-split', metavar='NAME', default='train',
+                    help='dataset train split (default: train)')
+parser.add_argument('--val-split', metavar='NAME', default='validation',
+                    help='dataset validation split (default: validation)')
 parser.add_argument('--model', default='vip_s7', type=str, metavar='MODEL',
                     help='Name of model to train (default: "countception"')
 parser.add_argument('--pretrained', action='store_true', default=False,
@@ -429,11 +435,10 @@ def main():
     if args.local_rank == 0:
         _logger.info('Scheduled epochs: {}'.format(num_epochs))
 
-    train_dir = os.path.join(args.data, 'train')
-    if not os.path.exists(train_dir):
-        _logger.error('Training folder does not exist at: {}'.format(train_dir))
-        exit(1)
-    dataset_train = Dataset(train_dir)
+    dataset_train = create_dataset(
+            args.dataset, root=args.data, split=args.train_split, is_training=True, batch_size=args.batch_size)
+    dataset_eval = create_dataset(
+        args.dataset, root=args.data, split=args.val_split, is_training=False, batch_size=args.batch_size)
 
     collate_fn = None
     mixup_fn = None
@@ -482,14 +487,6 @@ def main():
         pin_memory=args.pin_mem,
         use_multi_epochs_loader=args.use_multi_epochs_loader
     )
-
-    eval_dir = os.path.join(args.data, 'val')
-    if not os.path.isdir(eval_dir):
-        eval_dir = os.path.join(args.data, 'validation')
-        if not os.path.isdir(eval_dir):
-            _logger.error('Validation folder does not exist at: {}'.format(eval_dir))
-            exit(1)
-    dataset_eval = Dataset(eval_dir)
 
     loader_eval = create_loader(
         dataset_eval,
