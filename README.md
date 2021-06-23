@@ -13,7 +13,7 @@ Basic structure of the proposed Permute-MLP layer. The proposed Permute-MLP laye
 three branches that are responsible for encoding features along the height, width, and channel
 dimensions, respectively. The outputs from the three branches are then combined using element-wise addition, followed by a fully-connected layer for feature fusion.
 
-Our codes are based on the [pytorch-image-models](https://github.com/rwightman/pytorch-image-models) and [Token Labeling](https://github.com/zihangJiang/TokenLabelinghttps://github.com/rwightman).
+Our code is based on the [pytorch-image-models](https://github.com/rwightman/pytorch-image-models) and [Token Labeling](https://github.com/zihangJiang/TokenLabelinghttps://github.com/rwightman).
 
 ### Comparison with Recent MLP-like Models
 
