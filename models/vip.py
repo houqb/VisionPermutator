@@ -17,7 +17,7 @@ def _cfg(url='', **kwargs):
 default_cfgs = {
     'ViP_S': _cfg(crop_pct=0.875),
     'ViP_M': _cfg(crop_pct=0.9),
-    'ViP_L': _cfg(crop_pct=0.9),
+    'ViP_L': _cfg(crop_pct=0.875),
 }
 
 
