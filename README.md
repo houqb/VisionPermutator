@@ -4,10 +4,6 @@ This is a Pytorch implementation of our paper. We present Vision Permutator, a c
 MLP-like architecture for visual recognition. We show that our Vision Permutators are formidable competitors to convolutional neural
 networks (CNNs) and vision transformers. 
 
-Vision Permutator achieves 81.6% top-1 accuracy on ImageNet without
-extra large-scale training data (e.g., ImageNet-22k) using only 25M learnable parameters.
-When scaled up to 88M, we attain 83.2% top-1 accuracy.
-
 We hope this work could encourage researchers to rethink the way of encoding spatial
 information and facilitate the development of MLP-like models.
 
