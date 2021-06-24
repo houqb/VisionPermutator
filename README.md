@@ -32,6 +32,8 @@ Our code is based on the [pytorch-image-models](https://github.com/rwightman/pyt
 
 The throughput is measured on a single machine with V100 GPU (32GB) with batch size set to 32.
 
+Training ViP-Small/7 takes less than 30h on ImageNet for 300 epochs on a node with 8 A100 GPUs.
+
 ### Requirements
 
 torch>=1.4.0
