@@ -138,7 +138,7 @@ def basic_blocks(dim, index, layers, segment_dim, mlp_ratio=3., qkv_bias=False, 
     return blocks
 
 class VisionPermutator(nn.Module):
-    """ Vision Transformer with support for patch or hybrid CNN input stage
+    """ Vision Permutator
     """
     def __init__(self, layers, img_size=224, patch_size=4, in_chans=3, num_classes=1000,
         embed_dims=None, transitions=None, segment_dim=None, mlp_ratios=None, skip_lam=1.0,
