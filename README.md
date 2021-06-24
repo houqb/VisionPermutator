@@ -76,7 +76,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 ./distributed_train.sh 8 /path/to/imagenet 
 
 
 ### Reference
-If you use this repo or find it useful, please consider citing:
+You may want to cite:
 ```
 @misc{hou2021vision,
     title={Vision Permutator: A Permutable MLP-Like Architecture for Visual Recognition},
