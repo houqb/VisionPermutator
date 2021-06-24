@@ -1,4 +1,4 @@
-# Vision Permutator: A Permutable MLP-Like Architecture for Visual Recognition
+# Vision Permutator: A Permutable MLP-Like Architecture for Visual Recognition ([arxiv](https://arxiv.org/abs/2106.12368))
 
 This is a Pytorch implementation of our paper. We present Vision Permutator, a conceptually simple and data efficient
 MLP-like architecture for visual recognition. We show that our Vision Permutators are formidable competitors to convolutional neural
@@ -13,7 +13,7 @@ Basic structure of the proposed Permute-MLP layer. The proposed Permute-MLP laye
 three branches that are responsible for encoding features along the height, width, and channel
 dimensions, respectively. The outputs from the three branches are then combined using element-wise addition, followed by a fully-connected layer for feature fusion.
 
-Our code is based on the [pytorch-image-models](https://github.com/rwightman/pytorch-image-models) and [Token Labeling](https://github.com/zihangJiang/TokenLabelinghttps://github.com/rwightman).
+Our code is based on the [pytorch-image-models](https://github.com/rwightman/pytorch-image-models), [Token Labeling](https://github.com/zihangJiang/TokenLabelinghttps://github.com/rwightman), [T2T-ViT](https://github.com/yitu-opensource/T2T-ViT)
 
 ### Comparison with Recent MLP-like Models
 
@@ -69,6 +69,21 @@ Command line for training on 8 GPUs (V100)
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 ./distributed_train.sh 8 /path/to/imagenet --model vip_s7 -b 256 -j 8 --opt adamw --epochs 300 --sched cosine --apex-amp --img-size 224 --drop-path 0.1 --lr 2e-3 --weight-decay 0.05 --remode pixel --reprob 0.25 --aa rand-m9-mstd0.5-inc1 --smoothing 0.1 --mixup 0.8 --cutmix 1.0 --warmup-lr 1e-6 --warmup-epochs 20
 ```
+
+
+### Reference
+If you use this repo or find it useful, please consider citing:
+```
+@misc{hou2021vision,
+    title={Vision Permutator: A Permutable MLP-Like Architecture for Visual Recognition},
+    author={Qibin Hou and Zihang Jiang and Li Yuan and Ming-Ming Cheng and Shuicheng Yan and Jiashi Feng},
+    year={2021},
+    eprint={2106.12368},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}
+```
+
 
 ### License
 This repository is released under the MIT License as found in the [LICENSE](LICENSE) file.
