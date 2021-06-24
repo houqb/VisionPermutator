@@ -90,4 +90,4 @@ If you use this repo or find it useful, please consider citing:
 
 
 ### License
-This repository is released under the MIT License as found in the [LICENSE](LICENSE) file.
+This repository is released under the MIT License as found in the [LICENSE](LICENSE) file. For commercial use, please contact with the authors.
