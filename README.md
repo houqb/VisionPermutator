@@ -22,10 +22,10 @@ Our code is based on the [pytorch-image-models](https://github.com/rwightman/pyt
 | EAMLP-14             | 30M        | 711 img/s  |       224        |  78.9%     |          |       |
 | gMLP-S               | 20M        | -          |       224        |  79.6%     |          |       |
 | ResMLP-S24           | 30M        | 715 img/s  |       224        |  79.4%     |          |       |
-| ViP-Small/7 (ours)   | 25M        | 719 img/s  |       224        |  81.5%     | [link](https://drive.google.com/file/d/1cX6eauDrsGsLSZnqsX7cl0oiKX8Dzv5z/view?usp=sharing) |     |
+| ViP-Small/7 (ours)   | 25M        | 719 img/s  |       224        |  81.5%     | [link](https://drive.google.com/file/d/1cX6eauDrsGsLSZnqsX7cl0oiKX8Dzv5z/view?usp=sharing) | [log](https://github.com/Andrew-Qibin/VisionPermutator/blob/main/logs/vip_s7.log)    |
 | EAMLP-19             | 55M        | 464 img/s  |       224        |  79.4%     |          |       |
 | Mixer-B/16           | 59M        | -          |       224        |  78.5%     |          |       |
-| ViP-Medium/7 (ours)  | 55M        | 418 img/s  |       224        |  82.7%     | [link](https://drive.google.com/file/d/15y5WMypthpbBFdc01E3mJCZit7q0Yn8m/view?usp=sharing) |     |
+| ViP-Medium/7 (ours)  | 55M        | 418 img/s  |       224        |  82.7%     | [link](https://drive.google.com/file/d/15y5WMypthpbBFdc01E3mJCZit7q0Yn8m/view?usp=sharing) | [log](https://github.com/Andrew-Qibin/VisionPermutator/blob/main/logs/vip_m7.log)    |
 | gMLP-B               | 73M        | -          |       224        |  81.6%     |          |       |
 | ResMLP-B24           | 116M       | 231 img/s  |       224        |  81.0%     |          |       |
 | ViP-Large/7          | 88M        | 298 img/s  |       224        |  83.2%     | [link](https://drive.google.com/file/d/14F5IXGXmB_3jrwK33Efae-WEb5D_G85c/view?usp=sharing) |     |
@@ -91,4 +91,4 @@ You may want to cite:
 
 
 ### License
-This repository is released under the MIT License as found in the [LICENSE](LICENSE) file. For commercial use, please contact with the authors.
+This repository is released under the MIT License as found in the [LICENSE](LICENSE) file.
