@@ -41,6 +41,7 @@ torch>=1.4.0
 torchvision>=0.5.0
 pyyaml
 timm==0.4.5
+apex if you use 'apex amp'
 ```
 
 data prepare: ImageNet with the following folder structure, you can extract imagenet by this [script](https://gist.github.com/BIGBALLON/8a71d225eff18d88e469e6ea9b39cef4).
