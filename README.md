@@ -28,7 +28,7 @@ Our code is based on the [pytorch-image-models](https://github.com/rwightman/pyt
 | ViP-Medium/7 (ours)  | 55M        | 418 img/s  |       224        |  82.7%     | [link](https://drive.google.com/file/d/15y5WMypthpbBFdc01E3mJCZit7q0Yn8m/view?usp=sharing) | [log](https://github.com/Andrew-Qibin/VisionPermutator/blob/main/logs/vip_m7.log)    |
 | gMLP-B               | 73M        | -          |       224        |  81.6%     |          |       |
 | ResMLP-B24           | 116M       | 231 img/s  |       224        |  81.0%     |          |       |
-| ViP-Large/7          | 88M        | 298 img/s  |       224        |  83.2%     | [link](https://drive.google.com/file/d/14F5IXGXmB_3jrwK33Efae-WEb5D_G85c/view?usp=sharing) |     |
+| ViP-Large/7          | 88M        | 298 img/s  |       224        |  83.2%     | [link](https://drive.google.com/file/d/14F5IXGXmB_3jrwK33Efae-WEb5D_G85c/view?usp=sharing) | [log](https://github.com/Andrew-Qibin/VisionPermutator/blob/main/logs/vip_L7.log)    |
 
 The throughput is measured on a single machine with V100 GPU (32GB) with batch size set to 32.
 
