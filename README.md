@@ -91,4 +91,4 @@ You may want to cite:
 
 
 ### License
-This repository is released under the MIT License as found in the [LICENSE](LICENSE) file.
+This repository is released under the MIT License as found in the [LICENSE](LICENSE) file. Code in this repo is for non-commercial use only.
