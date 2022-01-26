@@ -1,6 +1,6 @@
 # Vision Permutator: A Permutable MLP-Like Architecture for Visual Recognition ([arxiv](https://arxiv.org/abs/2106.12368))
 
-This is a Pytorch implementation of our paper. We present Vision Permutator, a conceptually simple and data efficient
+This is a Pytorch implementation of our paper. MindSpore and Jittor code will be released soon. We present Vision Permutator, a conceptually simple and data efficient
 MLP-like architecture for visual recognition. We show that our Vision Permutators are formidable competitors to convolutional neural
 networks (CNNs) and vision transformers. 
 
