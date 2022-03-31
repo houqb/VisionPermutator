@@ -1,6 +1,6 @@
 # Vision Permutator: A Permutable MLP-Like Architecture for Visual Recognition ([arxiv](https://arxiv.org/abs/2106.12368))
 
-This is a Pytorch implementation of our paper. MindSpore and Jittor code will be released soon. We present Vision Permutator, a conceptually simple and data efficient
+This is a Pytorch implementation of our paper ViP, [IEEE TPAMI 2022](https://ieeexplore.ieee.org/abstract/document/9693166/). MindSpore and Jittor code will be released soon. We present Vision Permutator, a conceptually simple and data efficient
 MLP-like architecture for visual recognition. We show that our Vision Permutators are formidable competitors to convolutional neural
 networks (CNNs) and vision transformers. 
 
@@ -79,13 +79,12 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 ./distributed_train.sh 8 /path/to/imagenet 
 ### Reference
 You may want to cite:
 ```
-@misc{hou2021vision,
-    title={Vision Permutator: A Permutable MLP-Like Architecture for Visual Recognition},
-    author={Qibin Hou and Zihang Jiang and Li Yuan and Ming-Ming Cheng and Shuicheng Yan and Jiashi Feng},
-    year={2021},
-    eprint={2106.12368},
-    archivePrefix={arXiv},
-    primaryClass={cs.CV}
+@article{hou2022vision,
+  title={Vision permutator: A permutable mlp-like architecture for visual recognition},
+  author={Hou, Qibin and Jiang, Zihang and Yuan, Li and Cheng, Ming-Ming and Yan, Shuicheng and Feng, Jiashi},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2022},
+  publisher={IEEE}
 }
 ```
 
